@@ -20,6 +20,19 @@
 
     messeges.push(startMessage);
 
+    //Eventos
+    cnv.addEventListener('mousedown', function(e){
+        switch(gameState){
+            case START:
+                gameState = PLAY;
+                startMessage.visible = false;
+                break;
+        }
+    }, false);
+
+
+
+
     //Funções
     function loop(){
         requestAnimationFrame(loop, cnv);
