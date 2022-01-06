@@ -62,6 +62,17 @@
         //Ação da gravidade e deslocamento da bolinha
         ball.vy += gravity;
         ball.y += ball.vy;
+
+        //Game Over
+        if(ball.y - ball.radius > cnv.height){
+            gameState = OVER;
+            ball.visible = false;
+
+            window.setTimeout(function(){
+                startMessage.visible = true;
+                gameState = START;
+            }, 2000);
+        }
     }
 
     function render(){
@@ -89,6 +100,8 @@
 
     //Função de inicialização do jogo
     function startGame(){
+        ball.vy = 0;
+        ball.y = 50;
         ball.visible = true;
     }
 
