@@ -7,6 +7,19 @@
     var START = 1, PLAY = 2, OVER = 3;
     var gameState = START;
 
+    //Objeto bola
+    var ball = {
+        radius: 20,
+        vx: 0,
+        vy: 0,
+        x: cnv.width/2 - 10,
+        y: 50,
+        color: "#00f",
+        touched: false,
+        visible: false
+    }
+
+
     //Mensagens
     var messeges = [];
 
@@ -26,6 +39,7 @@
             case START:
                 gameState = PLAY;
                 startMessage.visible = false;
+                startGame();
                 break;
         }
     }, false);
@@ -49,6 +63,14 @@
     function render(){
         ctx.clearRect(0, 0, cnv.width, cnv.height);
 
+        //Renderização da bola
+        if(ball.visible){
+            ctx.fillStyle = ball.color;
+            ctx.beginPath();
+            ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI*2);
+            ctx.closePath();
+            ctx.fill();
+        }
 
         //Renderização das mensagens de texto
         for(var i in messeges){
@@ -59,6 +81,11 @@
                 ctx.fillText(msg.text, (cnv.width - ctx.measureText(msg.text).width)/2, msg.y);
             }
         }
+    }
+
+    //Função de inicialização do jogo
+    function startGame(){
+        ball.visible = true;
     }
 
     loop();
