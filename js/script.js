@@ -3,6 +3,8 @@
     var cnv = document.querySelector('canvas');
     var ctx = cnv.getContext('2d');
 
+    var gravity = 0.1;
+
     //Estados do jogo
     var START = 1, PLAY = 2, OVER = 3;
     var gameState = START;
@@ -57,7 +59,9 @@
     }
 
     function update(){
-        
+        //Ação da gravidade e deslocamento da bolinha
+        ball.vy += gravity;
+        ball.y += ball.vy;
     }
 
     function render(){
