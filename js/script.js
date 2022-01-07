@@ -12,11 +12,14 @@
 	//Pontuação
 	var score = 0;
 
-	//Recorde
-	var record = 0;
-	if(localStorage.getItem("record") !== null){
-		record = localStorage.getItem("record");
-	}
+	//Recorde / metodo 1
+	//var record = 0;
+	//if(localStorage.getItem("record") !== null){
+		//record = localStorage.getItem("record");
+	//}
+
+	//Segundo metodo recorde/op ternario
+	var record = localStorage.getItem("record") ? localStorage.getItem("record") : 0;
 	
 	//Objeto bola
 	var ball = {
@@ -129,6 +132,14 @@
 
 			scoreText.text = "YOUR SCORE: " + score;
 			scoreText.visible = true;
+
+			if(score > record){
+				record = score;
+				localStorage.setItem("record", record);
+			}
+
+			recordMesage.text = "BEST SCORE: " + record;
+			recordMesage.visible = true;
 		}
 	}
 	
@@ -169,6 +180,7 @@
 		ball.visible = true;
 		score = 0;
 		scoreText.visible = false;
+		recordMesage.visible = false;
 	}
 	
 	loop();
