@@ -102,6 +102,8 @@
     function startGame(){
         ball.vy = 0;
         ball.y = 50;
+        ball.vx - Math.floor(Math.random() * 21) - 10;
+        ball.x = Math.floor(Math.random() * 261) + 20;
         ball.visible = true;
     }
 
