@@ -5,11 +5,11 @@
 	var gravity = 0.1;
 	var catX = catY = hyp = 0;
 	
-	//estados do jogo
+	//Estados do jogo
 	var START = 1, PLAY = 2, OVER = 3;
 	var gameState = START;
 	
-	//objeto bola
+	//Objeto bola
 	var ball = {
 		radius: 20,
 		vx: 0,
@@ -21,7 +21,7 @@
 		visible: false
 	};
 	
-	//mensagens
+	//Mensagens
 	var messages = [];
 	
 	var startMesage = {
@@ -34,7 +34,7 @@
 	
 	messages.push(startMesage);
 	
-	//eventos
+	//Eventos
 	cnv.addEventListener('mousedown',function(e){
 		catX = ball.x - e.offsetX;
 		catY = ball.y - e.offsetY;
@@ -61,7 +61,7 @@
 		}
 	},false);
 	
-	//funções
+	//Funções
 	function loop(){
 		requestAnimationFrame(loop,cnv);
 		if(gameState === PLAY){
@@ -71,12 +71,12 @@
 	}
 	
 	function update(){
-		//ação da gravidade e deslocamento da bolinha
+		//Ação da gravidade e deslocamento da bolinha
 		ball.vy += gravity;
 		ball.y += ball.vy;
 		ball.x += ball.vx;
 		
-		//quicar nas paredes
+		//Quicar nas paredes
 		if(ball.x + ball.radius > cnv.width || ball.x < ball.radius){
 			if(ball.x < ball.radius){
 				ball.x = ball.radius;
@@ -86,13 +86,13 @@
 			ball.vx *= -0.8;
 		}
 		
-		//quicar no teto
+		//Quicar no teto
 		if(ball.y < ball.radius && ball.vy < 0){
 			ball.y = ball.radius;
 			ball.vy *= -1;
 		}
 		
-		//game over
+		//Game over
 		if(ball.y - ball.radius > cnv.height){
 			gameState = OVER;
 			ball.visible = false;
@@ -107,7 +107,7 @@
 	function render(){
 		ctx.clearRect(0,0,cnv.width,cnv.height);
 		
-		//redenderização da bola
+		//Redenderização da bola
 		if(ball.visible){
 			ctx.fillStyle = ball.color;
 			ctx.beginPath();
@@ -116,7 +116,7 @@
 			ctx.fill();
 		}
 		
-		//renderização das mensagens de texto
+		//Renderização das mensagens de texto
 		for(var i in messages){
 			var msg = messages[i];
 			if(msg.visible){
