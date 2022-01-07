@@ -26,7 +26,8 @@
 	
 	//Mensagens
 	var messages = [];
-	
+
+	//Mensgem inicial
 	var startMesage = {
 		text: "TOUCH TO START",
 		y: cnv.height/2 - 100,
@@ -36,6 +37,11 @@
 	};
 	
 	messages.push(startMesage);
+
+	//Placar final
+	var scoreText = Object.create(startMesage);
+	scoreText.visible = false;
+	scoreText.y = (cnv.height/2 + 50);
 	
 	//Eventos
 	cnv.addEventListener('mousedown',function(e){
@@ -143,7 +149,7 @@
 		ball.vx = Math.floor(Math.random()*21) - 10;
 		ball.x = Math.floor(Math.random()*261) + 20;
 		ball.visible = true;
-		
+		score = 0;
 	}
 	
 	loop();
