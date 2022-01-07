@@ -11,6 +11,12 @@
 
 	//Pontuação
 	var score = 0;
+
+	//Recorde
+	var record = 0;
+	if(localStorage.getItem("record") !== null){
+		record = localStorage.getItem("record");
+	}
 	
 	//Objeto bola
 	var ball = {
@@ -42,6 +48,15 @@
 	var scoreText = Object.create(startMesage);
 	scoreText.visible = false;
 	scoreText.y = (cnv.height/2 + 50);
+
+	messages.push(scoreText);
+
+	//Record
+	var recordMesage = Object.create(startGame);
+	recordMesage.visible = false;
+	recordMesage.y = (cnv.height/2 + 100);
+
+	messages.push(recordMesage);
 	
 	//Eventos
 	cnv.addEventListener('mousedown',function(e){
@@ -106,11 +121,14 @@
 		if(ball.y - ball.radius > cnv.height){
 			gameState = OVER;
 			ball.visible = false;
-			
+
 			window.setTimeout(function(){
 				startMesage.visible = true;
 				gameState = START;
 			},2000);
+
+			scoreText.text = "YOUR SCORE: " + score;
+			scoreText.visible = true;
 		}
 	}
 	
@@ -150,6 +168,7 @@
 		ball.x = Math.floor(Math.random()*261) + 20;
 		ball.visible = true;
 		score = 0;
+		scoreText.visible = false;
 	}
 	
 	loop();
