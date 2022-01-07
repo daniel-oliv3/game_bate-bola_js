@@ -8,6 +8,9 @@
 	//Estados do jogo
 	var START = 1, PLAY = 2, OVER = 3;
 	var gameState = START;
+
+	//Pontuação
+	var score = 0;
 	
 	//Objeto bola
 	var ball = {
@@ -50,6 +53,7 @@
 					ball.vx = Math.floor(Math.random()*21) - 10;
 					ball.vy = -(Math.floor(Math.random()*6) + 5);
 					ball.touched = true;
+					score++;
 				}
 				break;
 		}
@@ -114,8 +118,13 @@
 			ctx.arc(ball.x,ball.y,ball.radius,0,Math.PI*2);
 			ctx.closePath();
 			ctx.fill();
+			//Desenhar o placar
+			ctx.font = "bold 15px Arial";
+			ctx.fillStyle = "#000";
+			ctx.fillText("SCORE: " + score, 10, 20);
 		}
-		
+
+			
 		//Renderização das mensagens de texto
 		for(var i in messages){
 			var msg = messages[i];
